@@ -1,0 +1,19 @@
+{
+  "name": "haiyiba-lol-helper-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "chokidar": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.12.3",
+    "tsx": "^4.19.3",
+    "typescript": "~6.0.2"
+  }
+}
