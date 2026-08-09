@@ -16,5 +16,10 @@
     "@types/node": "^24.12.3",
     "tsx": "^4.19.3",
     "typescript": "~6.0.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild": "0.28.1"
+    }
   }
 }

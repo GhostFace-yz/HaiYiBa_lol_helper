@@ -13,6 +13,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { watch as chokidarWatch } from 'chokidar';
+import { startApiProbe, takeSnapshot, getProbeStatus } from './apiProbe.js';
 
 /* ── 配置 ─────────────────────────────────────────────────── */
 
@@ -484,7 +485,27 @@ async function handleRequest(req: http.IncomingMessage, res: http.ServerResponse
         port: state.port,
         lockfilePath: state.lockfilePath || null,
         lastDetection: lastDetectionDiag,
+        probe: getProbeStatus(),
       }, null, 2));
+      return;
+    }
+
+    // GET /probe/status — API 探针状态（是否在游戏内、已记录事件数、日志路径）
+    if (url.pathname === '/probe/status') {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(getProbeStatus(), null, 2));
+      return;
+    }
+
+    // GET /probe/mark?label=xxx — 海克斯界面打开时抓取全端点快照
+    if (url.pathname === '/probe/mark') {
+      const label = url.searchParams.get('label') || 'mark';
+      const result = await takeSnapshot(label, {
+        lcuRequest,
+        isLcuConnected: () => state.connected,
+      });
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(result, null, 2));
       return;
     }
 
@@ -624,3 +645,7 @@ log('');
 
 startHttpServer();
 startLcuDetection();
+startApiProbe({
+  lcuRequest,
+  isLcuConnected: () => state.connected,
+});

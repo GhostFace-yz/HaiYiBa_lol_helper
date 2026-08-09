@@ -2,6 +2,7 @@ import { useRef, useState, useCallback, useEffect } from 'react';
 import { useBorderlessDetection } from './useBorderlessDetection';
 import AugmentOverlay from './AugmentOverlay';
 import { useAugmentDetection } from './useAugmentDetection';
+import { usePipOverlay } from './usePipOverlay';
 
 interface CaptureState {
   status: 'idle' | 'capturing' | 'error';
@@ -15,17 +16,6 @@ export default function ScreenCapture() {
   const streamRef = useRef<MediaStream | null>(null);
   const [state, setState] = useState<CaptureState>({ status: 'idle' });
 
-  const stopCapture = useCallback(() => {
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((track) => track.stop());
-      streamRef.current = null;
-    }
-    if (videoRef.current) {
-      videoRef.current.srcObject = null;
-    }
-    setState({ status: 'idle' });
-  }, []);
-
   const borderless = useBorderlessDetection(
     streamRef,
     videoRef,
@@ -36,6 +26,20 @@ export default function ScreenCapture() {
     videoRef,
     state.status === 'capturing',
   );
+
+  const pip = usePipOverlay(streamRef, videoRef, augment.matches);
+
+  const stopCapture = useCallback(() => {
+    pip.closePip();
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((track) => track.stop());
+      streamRef.current = null;
+    }
+    if (videoRef.current) {
+      videoRef.current.srcObject = null;
+    }
+    setState({ status: 'idle' });
+  }, [pip.closePip]);
 
   const startCapture = useCallback(async () => {
     try {
@@ -118,6 +122,49 @@ export default function ScreenCapture() {
             <span className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
               {state.resolution.width} × {state.resolution.height}
             </span>
+          )}
+          {state.status === 'capturing' && (
+            <span
+              className="text-xs"
+              title={augment.error || undefined}
+              style={{
+                color: augment.error
+                  ? 'var(--color-danger)'
+                  : augment.workerReady && augment.iconCount > 0
+                    ? 'var(--color-success)'
+                    : 'var(--color-warning, #eab308)',
+              }}
+            >
+              {augment.error
+                ? `海克斯识别不可用: ${augment.error}`
+                : augment.workerReady
+                  ? augment.iconCount > 0
+                    ? `OCR 词库 ${augment.iconCount} 个`
+                    : '词库为空（请运行 pnpm run fetch-assets)'
+                  : 'OCR 引擎加载中...'}
+            </span>
+          )}
+          {state.status === 'capturing' && augment.workerReady && augment.debug.length > 0 && (
+            <span
+              className="text-xs"
+              title="三个卡牌区域各自的最佳名称相似度，≥70% 才画框；持续偏低说明区域没框住文字或 OCR 识别质量差"
+              style={{ color: 'var(--color-text-secondary)' }}
+            >
+              区域匹配 {augment.debug.map((d) => `${Math.round(d.bestConfidence * 100)}%`).join(' / ')}
+            </span>
+          )}
+          {state.status === 'capturing' && pip.pipSupported && (
+            <button
+              onClick={pip.togglePip}
+              title="打开置顶悬浮窗：视频画面 + 识别框，拖到游戏窗口上对齐"
+              className="px-3 py-1 text-xs rounded transition-colors"
+              style={{
+                backgroundColor: pip.pipActive ? 'var(--color-danger)' : 'var(--color-success, #22c55e)',
+                color: pip.pipActive ? '#fff' : '#000',
+              }}
+            >
+              {pip.pipActive ? '关闭悬浮框' : '游戏悬浮框'}
+            </button>
           )}
           {state.status === 'capturing' ? (
             <button

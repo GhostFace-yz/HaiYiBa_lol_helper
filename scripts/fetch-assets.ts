@@ -249,6 +249,9 @@ interface CdragonAugment {
   name: string;
   description: string;
   iconPath?: string;
+  /** arena JSON 实际提供的图标字段（优先用大图，模板匹配更清晰） */
+  iconLarge?: string;
+  iconSmall?: string;
 }
 
 async function fetchAugments(): Promise<AugmentMeta[]> {
@@ -276,16 +279,15 @@ async function fetchAugments(): Promise<AugmentMeta[]> {
     const name = aug.name || `Augment ${id}`;
     const description = aug.description || '';
 
-    // 从 CDragon 数据中提取图标路径
-    const iconPath = aug.iconPath || '';
+    // 从 CDragon 数据中提取图标路径（arena JSON 实际字段为 iconLarge / iconSmall）
+    const iconPath = aug.iconPath || aug.iconLarge || aug.iconSmall || '';
     let iconFilename = `${id}.png`;
     let iconUrl = '';
 
     if (iconPath) {
-      // iconPath 通常是相对路径如 "ASSETS/UX/Cherry/Augments/Icons/xxx.png"
-      // 转为 CDragon raw CDN URL
-      const normalizedPath = iconPath.toLowerCase().replace(/^assets\//, '');
-      iconUrl = `${CD_BASE}/latest/game/${normalizedPath}`;
+      // iconPath 形如 "assets/ux/cherry/augments/icons/xxx_large.png"
+      // CDragon raw CDN 路径需保留 assets/ 前缀，整体小写
+      iconUrl = `${CD_BASE}/latest/game/${iconPath.toLowerCase()}`;
       // 保留原始文件名
       const ext = path.extname(iconPath) || '.png';
       iconFilename = `${id}${ext}`;
@@ -341,8 +343,18 @@ async function main() {
   }
 
   if (cachedVersion === latestVersion) {
-    log('✓ 素材已是最新版本，跳过下载');
-    return;
+    // 版本相同但海克斯图标缺失（如下载失败过）时仍需补全
+    let augmentIconCount = 0;
+    try {
+      augmentIconCount = fs.readdirSync(AUGMENTS_DIR).filter((f) => f.endsWith('.png')).length;
+    } catch {
+      // 目录不存在按 0 处理
+    }
+    if (augmentIconCount > 0) {
+      log('✓ 素材已是最新版本，跳过下载');
+      return;
+    }
+    log('  ⚠ 版本未变但海克斯图标缺失，重新补全');
   }
 
   if (cachedVersion) {

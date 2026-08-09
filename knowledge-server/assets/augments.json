@@ -1,0 +1,1352 @@
+[
+  {
+    "id": "93",
+    "name": "热身动作",
+    "description": "",
+    "icon": "augments/93.png"
+  },
+  {
+    "id": "89",
+    "name": "遁入暗影",
+    "description": "",
+    "icon": "augments/89.png"
+  },
+  {
+    "id": "347",
+    "name": "炼金科技纯化器",
+    "description": "",
+    "icon": "augments/347.png"
+  },
+  {
+    "id": "359",
+    "name": "羊灵生息",
+    "description": "",
+    "icon": "augments/359.png"
+  },
+  {
+    "id": "323",
+    "name": "地狱三头犬",
+    "description": "",
+    "icon": "augments/323.png"
+  },
+  {
+    "id": "340",
+    "name": "获得一个棱彩阶属性锻造器",
+    "description": "",
+    "icon": "augments/340.png"
+  },
+  {
+    "id": "87",
+    "name": "台风",
+    "description": "",
+    "icon": "augments/87.png"
+  },
+  {
+    "id": "108",
+    "name": "自我毁灭",
+    "description": "",
+    "icon": "augments/108.png"
+  },
+  {
+    "id": "120",
+    "name": "超越死亡的效劳",
+    "description": "",
+    "icon": "augments/120.png"
+  },
+  {
+    "id": "327",
+    "name": "不灭守护",
+    "description": "",
+    "icon": "augments/327.png"
+  },
+  {
+    "id": "66",
+    "name": "量子计算",
+    "description": "",
+    "icon": "augments/66.png"
+  },
+  {
+    "id": "23",
+    "name": "魔鬼之舞",
+    "description": "",
+    "icon": "augments/23.png"
+  },
+  {
+    "id": "21",
+    "name": "防御计略",
+    "description": "",
+    "icon": "augments/21.png"
+  },
+  {
+    "id": "243",
+    "name": "质变：混沌",
+    "description": "",
+    "icon": "augments/243.png"
+  },
+  {
+    "id": "14",
+    "name": "专属司机",
+    "description": "",
+    "icon": "augments/14.png"
+  },
+  {
+    "id": "129",
+    "name": "神射法师",
+    "description": "",
+    "icon": "augments/129.png"
+  },
+  {
+    "id": "231",
+    "name": "光明守望者",
+    "description": "",
+    "icon": "augments/231.png"
+  },
+  {
+    "id": "351",
+    "name": "冰霜之锤",
+    "description": "",
+    "icon": "augments/351.png"
+  },
+  {
+    "id": "318",
+    "name": "任务：疯狂帽子人",
+    "description": "",
+    "icon": "augments/318.png"
+  },
+  {
+    "id": "6",
+    "name": "利刃华尔兹",
+    "description": "",
+    "icon": "augments/6.png"
+  },
+  {
+    "id": "94",
+    "name": "自愿牺牲",
+    "description": "",
+    "icon": "augments/94.png"
+  },
+  {
+    "id": "308",
+    "name": "火狐",
+    "description": "",
+    "icon": "augments/308.png"
+  },
+  {
+    "id": "223",
+    "name": "召唤师革新",
+    "description": "",
+    "icon": "augments/223.png"
+  },
+  {
+    "id": "44",
+    "name": "冰寒",
+    "description": "",
+    "icon": "augments/44.png"
+  },
+  {
+    "id": "214",
+    "name": "旋转至胜",
+    "description": "",
+    "icon": "augments/214.png"
+  },
+  {
+    "id": "5",
+    "name": "号令之旗",
+    "description": "",
+    "icon": "augments/5.png"
+  },
+  {
+    "id": "80",
+    "name": "会心防守",
+    "description": "",
+    "icon": "augments/80.png"
+  },
+  {
+    "id": "342",
+    "name": "等级类强化符文",
+    "description": "",
+    "icon": "augments/342.png"
+  },
+  {
+    "id": "97",
+    "name": "巫师式思考",
+    "description": "",
+    "icon": "augments/97.png"
+  },
+  {
+    "id": "154",
+    "name": "任务：海牛阿福的勇士",
+    "description": "",
+    "icon": "augments/154.png"
+  },
+  {
+    "id": "369",
+    "name": "渴望权力",
+    "description": "",
+    "icon": "augments/369.png"
+  },
+  {
+    "id": "90",
+    "name": "复仇",
+    "description": "",
+    "icon": "augments/90.png"
+  },
+  {
+    "id": "348",
+    "name": "夺命剃刀",
+    "description": "",
+    "icon": "augments/348.png"
+  },
+  {
+    "id": "28",
+    "name": "侵蚀",
+    "description": "",
+    "icon": "augments/28.png"
+  },
+  {
+    "id": "226",
+    "name": "属性！",
+    "description": "",
+    "icon": "augments/226.png"
+  },
+  {
+    "id": "54",
+    "name": "物法皆修",
+    "description": "",
+    "icon": "augments/54.png"
+  },
+  {
+    "id": "51",
+    "name": "点亮他们！",
+    "description": "",
+    "icon": "augments/51.png"
+  },
+  {
+    "id": "72",
+    "name": "炽烈黎明",
+    "description": "",
+    "icon": "augments/72.png"
+  },
+  {
+    "id": "136",
+    "name": "扇巴掌",
+    "description": "",
+    "icon": "augments/136.png"
+  },
+  {
+    "id": "133",
+    "name": "魔法飞弹",
+    "description": "",
+    "icon": "augments/133.png"
+  },
+  {
+    "id": "135",
+    "name": "法术苏醒",
+    "description": "",
+    "icon": "augments/135.png"
+  },
+  {
+    "id": "193",
+    "name": "星原之准",
+    "description": "",
+    "icon": "augments/193.png"
+  },
+  {
+    "id": "65",
+    "name": "超凡邪恶",
+    "description": "",
+    "icon": "augments/65.png"
+  },
+  {
+    "id": "180",
+    "name": "超强大脑",
+    "description": "",
+    "icon": "augments/180.png"
+  },
+  {
+    "id": "92",
+    "name": "易损",
+    "description": "",
+    "icon": "augments/92.png"
+  },
+  {
+    "id": "10",
+    "name": "炮灰",
+    "description": "",
+    "icon": "augments/10.png"
+  },
+  {
+    "id": "233",
+    "name": "终极转盘",
+    "description": "",
+    "icon": "augments/233.png"
+  },
+  {
+    "id": "310",
+    "name": "小丑学院",
+    "description": "",
+    "icon": "augments/310.png"
+  },
+  {
+    "id": "251",
+    "name": "疼痛钝感",
+    "description": "",
+    "icon": "augments/251.png"
+  },
+  {
+    "id": "362",
+    "name": "与【猎人】结盟",
+    "description": "",
+    "icon": "augments/362.png"
+  },
+  {
+    "id": "322",
+    "name": "强化之能量",
+    "description": "",
+    "icon": "augments/322.png"
+  },
+  {
+    "id": "53",
+    "name": "科学狂人",
+    "description": "",
+    "icon": "augments/53.png"
+  },
+  {
+    "id": "57",
+    "name": "山脉龙魂",
+    "description": "",
+    "icon": "augments/57.png"
+  },
+  {
+    "id": "88",
+    "name": "终极刷新",
+    "description": "",
+    "icon": "augments/88.png"
+  },
+  {
+    "id": "236",
+    "name": "诡术恶魔",
+    "description": "",
+    "icon": "augments/236.png"
+  },
+  {
+    "id": "171",
+    "name": "去质",
+    "description": "",
+    "icon": "augments/171.png"
+  },
+  {
+    "id": "39",
+    "name": "冰霜 幽灵",
+    "description": "",
+    "icon": "augments/39.png"
+  },
+  {
+    "id": "79",
+    "name": "战争交响乐",
+    "description": "",
+    "icon": "augments/79.png"
+  },
+  {
+    "id": "86",
+    "name": "精准奇才",
+    "description": "",
+    "icon": "augments/86.png"
+  },
+  {
+    "id": "30",
+    "name": "尤里卡",
+    "description": "",
+    "icon": "augments/30.png"
+  },
+  {
+    "id": "60",
+    "name": "海洋龙魂",
+    "description": "",
+    "icon": "augments/60.png"
+  },
+  {
+    "id": "321",
+    "name": "保镖",
+    "description": "",
+    "icon": "augments/321.png"
+  },
+  {
+    "id": "15",
+    "name": "死亡之环",
+    "description": "",
+    "icon": "augments/15.png"
+  },
+  {
+    "id": "156",
+    "name": "任务：沃格勒特的巫师帽",
+    "description": "",
+    "icon": "augments/156.png"
+  },
+  {
+    "id": "27",
+    "name": "大地苏醒",
+    "description": "",
+    "icon": "augments/27.png"
+  },
+  {
+    "id": "103",
+    "name": "面包和黄油",
+    "description": "",
+    "icon": "augments/103.png"
+  },
+  {
+    "id": "82",
+    "name": "残暴之力",
+    "description": "",
+    "icon": "augments/82.png"
+  },
+  {
+    "id": "76",
+    "name": "天音爆",
+    "description": "",
+    "icon": "augments/76.png"
+  },
+  {
+    "id": "354",
+    "name": "监视残存物",
+    "description": "",
+    "icon": "augments/354.png"
+  },
+  {
+    "id": "107",
+    "name": "接二连三",
+    "description": "",
+    "icon": "augments/107.png"
+  },
+  {
+    "id": "239",
+    "name": "���生突变",
+    "description": "",
+    "icon": "augments/239.png"
+  },
+  {
+    "id": "13",
+    "name": "星界躯体",
+    "description": "",
+    "icon": "augments/13.png"
+  },
+  {
+    "id": "324",
+    "name": "勇中最勇",
+    "description": "",
+    "icon": "augments/324.png"
+  },
+  {
+    "id": "150",
+    "name": "面包和果酱",
+    "description": "",
+    "icon": "augments/150.png"
+  },
+  {
+    "id": "98",
+    "name": "急急小子",
+    "description": "",
+    "icon": "augments/98.png"
+  },
+  {
+    "id": "349",
+    "name": "去质器",
+    "description": "",
+    "icon": "augments/349.png"
+  },
+  {
+    "id": "34",
+    "name": "堕落圣盾",
+    "description": "",
+    "icon": "augments/34.png"
+  },
+  {
+    "id": "198",
+    "name": "圣火",
+    "description": "",
+    "icon": "augments/198.png"
+  },
+  {
+    "id": "311",
+    "name": "溢流",
+    "description": "",
+    "icon": "augments/311.png"
+  },
+  {
+    "id": "35",
+    "name": "感受燃烧",
+    "description": "",
+    "icon": "augments/35.png"
+  },
+  {
+    "id": "42",
+    "name": "恶趣味",
+    "description": "",
+    "icon": "augments/42.png"
+  },
+  {
+    "id": "9",
+    "name": "霸符兄弟",
+    "description": "",
+    "icon": "augments/9.png"
+  },
+  {
+    "id": "125",
+    "name": "副本BOSS",
+    "description": "",
+    "icon": "augments/125.png"
+  },
+  {
+    "id": "63",
+    "name": "狂徒豪气",
+    "description": "",
+    "icon": "augments/63.png"
+  },
+  {
+    "id": "26",
+    "name": "唯快不破",
+    "description": "",
+    "icon": "augments/26.png"
+  },
+  {
+    "id": "372",
+    "name": "强求权力",
+    "description": "",
+    "icon": "augments/372.png"
+  },
+  {
+    "id": "73",
+    "name": "暗影疾奔",
+    "description": "",
+    "icon": "augments/73.png"
+  },
+  {
+    "id": "316",
+    "name": "烈性毒液",
+    "description": "",
+    "icon": "augments/316.png"
+  },
+  {
+    "id": "45",
+    "name": "炼狱导管",
+    "description": "",
+    "icon": "augments/45.png"
+  },
+  {
+    "id": "361",
+    "name": "与【恶魔】结盟",
+    "description": "",
+    "icon": "augments/361.png"
+  },
+  {
+    "id": "205",
+    "name": "物理转魔法",
+    "description": "",
+    "icon": "augments/205.png"
+  },
+  {
+    "id": "4",
+    "name": "回归基本功",
+    "description": "",
+    "icon": "augments/4.png"
+  },
+  {
+    "id": "224",
+    "name": "棱彩蛋",
+    "description": "",
+    "icon": "augments/224.png"
+  },
+  {
+    "id": "110",
+    "name": "晾衣绳",
+    "description": "",
+    "icon": "augments/110.png"
+  },
+  {
+    "id": "102",
+    "name": "请勿追击",
+    "description": "",
+    "icon": "augments/102.png"
+  },
+  {
+    "id": "368",
+    "name": "渴望财富",
+    "description": "",
+    "icon": "augments/368.png"
+  },
+  {
+    "id": "77",
+    "name": "灵魂虹吸",
+    "description": "",
+    "icon": "augments/77.png"
+  },
+  {
+    "id": "234",
+    "name": "财运锻造器",
+    "description": "",
+    "icon": "augments/234.png"
+  },
+  {
+    "id": "301",
+    "name": "神圣干预",
+    "description": "",
+    "icon": "augments/301.png"
+  },
+  {
+    "id": "84",
+    "name": "穿针引线",
+    "description": "",
+    "icon": "augments/84.png"
+  },
+  {
+    "id": "151",
+    "name": "面包和奶酪",
+    "description": "",
+    "icon": "augments/151.png"
+  },
+  {
+    "id": "149",
+    "name": "不动如山",
+    "description": "",
+    "icon": "augments/149.png"
+  },
+  {
+    "id": "317",
+    "name": "潘朵拉的盒子",
+    "description": "",
+    "icon": "augments/317.png"
+  },
+  {
+    "id": "33",
+    "name": "弹簧飞爪",
+    "description": "",
+    "icon": "augments/33.png"
+  },
+  {
+    "id": "75",
+    "name": "慢炖",
+    "description": "",
+    "icon": "augments/75.png"
+  },
+  {
+    "id": "24",
+    "name": "择日赴死",
+    "description": "",
+    "icon": "augments/24.png"
+  },
+  {
+    "id": "404",
+    "name": "404 强化符文未找到",
+    "description": "",
+    "icon": "augments/404.png"
+  },
+  {
+    "id": "373",
+    "name": "强求风险",
+    "description": "",
+    "icon": "augments/373.png"
+  },
+  {
+    "id": "225",
+    "name": "双刀流",
+    "description": "",
+    "icon": "augments/225.png"
+  },
+  {
+    "id": "405",
+    "name": "强化符文405",
+    "description": "",
+    "icon": "augments/405.png"
+  },
+  {
+    "id": "78",
+    "name": "灵魂连接",
+    "description": "",
+    "icon": "augments/78.png"
+  },
+  {
+    "id": "350",
+    "name": "附魔药瓶",
+    "description": "",
+    "icon": "augments/350.png"
+  },
+  {
+    "id": "217",
+    "name": "死亡触摸",
+    "description": "",
+    "icon": "augments/217.png"
+  },
+  {
+    "id": "192",
+    "name": "任务：惩戒天使",
+    "description": "",
+    "icon": "augments/192.png"
+  },
+  {
+    "id": "17",
+    "name": "职业杀手",
+    "description": "",
+    "icon": "augments/17.png"
+  },
+  {
+    "id": "138",
+    "name": "渴血",
+    "description": "",
+    "icon": "augments/138.png"
+  },
+  {
+    "id": "330",
+    "name": "剥夺",
+    "description": "",
+    "icon": "augments/330.png"
+  },
+  {
+    "id": "312",
+    "name": "我们马上就回来",
+    "description": "",
+    "icon": "augments/312.png"
+  },
+  {
+    "id": "333",
+    "name": "任务：熔铸之神的仪式",
+    "description": "",
+    "icon": "augments/333.png"
+  },
+  {
+    "id": "37",
+    "name": "急救用具",
+    "description": "",
+    "icon": "augments/37.png"
+  },
+  {
+    "id": "61",
+    "name": "回力OK镖",
+    "description": "",
+    "icon": "augments/61.png"
+  },
+  {
+    "id": "357",
+    "name": "双管齐下",
+    "description": "",
+    "icon": "augments/357.png"
+  },
+  {
+    "id": "338",
+    "name": "蜂巢思维",
+    "description": "",
+    "icon": "augments/338.png"
+  },
+  {
+    "id": "319",
+    "name": "任务：三圣宝",
+    "description": "",
+    "icon": "augments/319.png"
+  },
+  {
+    "id": "49",
+    "name": "果汁盒",
+    "description": "",
+    "icon": "augments/49.png"
+  },
+  {
+    "id": "115",
+    "name": "最万用的瞄准镜",
+    "description": "",
+    "icon": "augments/115.png"
+  },
+  {
+    "id": "232",
+    "name": "史莱姆时间",
+    "description": "",
+    "icon": "augments/232.png"
+  },
+  {
+    "id": "216",
+    "name": "恐惧使者",
+    "description": "",
+    "icon": "augments/216.png"
+  },
+  {
+    "id": "204",
+    "name": "叠角龙",
+    "description": "",
+    "icon": "augments/204.png"
+  },
+  {
+    "id": "206",
+    "name": "魔法转物理",
+    "description": "",
+    "icon": "augments/206.png"
+  },
+  {
+    "id": "194",
+    "name": "精怪魔法",
+    "description": "",
+    "icon": "augments/194.png"
+  },
+  {
+    "id": "36",
+    "name": "火上浇油",
+    "description": "",
+    "icon": "augments/36.png"
+  },
+  {
+    "id": "219",
+    "name": "末日预言者",
+    "description": "",
+    "icon": "augments/219.png"
+  },
+  {
+    "id": "116",
+    "name": "闪现向前",
+    "description": "",
+    "icon": "augments/116.png"
+  },
+  {
+    "id": "177",
+    "name": "套娃",
+    "description": "",
+    "icon": "augments/177.png"
+  },
+  {
+    "id": "81",
+    "name": "踢踏舞",
+    "description": "",
+    "icon": "augments/81.png"
+  },
+  {
+    "id": "220",
+    "name": "连拨击锤",
+    "description": "",
+    "icon": "augments/220.png"
+  },
+  {
+    "id": "364",
+    "name": "替换强化符文",
+    "description": "",
+    "icon": "augments/364.png"
+  },
+  {
+    "id": "85",
+    "name": "折磨之叉",
+    "description": "",
+    "icon": "augments/85.png"
+  },
+  {
+    "id": "104",
+    "name": "仆从大师",
+    "description": "",
+    "icon": "augments/104.png"
+  },
+  {
+    "id": "392",
+    "name": "诈骗者之球",
+    "description": "",
+    "icon": "augments/392.png"
+  },
+  {
+    "id": "313",
+    "name": "坦克引擎",
+    "description": "",
+    "icon": "augments/313.png"
+  },
+  {
+    "id": "341",
+    "name": "获得一个强化符文栏位",
+    "description": "",
+    "icon": "augments/341.png"
+  },
+  {
+    "id": "29",
+    "name": "虚幻武器",
+    "description": "",
+    "icon": "augments/29.png"
+  },
+  {
+    "id": "62",
+    "name": "全能龙魂",
+    "description": "",
+    "icon": "augments/62.png"
+  },
+  {
+    "id": "20",
+    "name": "黎明使者的坚决",
+    "description": "",
+    "icon": "augments/20.png"
+  },
+  {
+    "id": "356",
+    "name": "银汤匙",
+    "description": "",
+    "icon": "augments/356.png"
+  },
+  {
+    "id": "207",
+    "name": "纹丝不动",
+    "description": "",
+    "icon": "augments/207.png"
+  },
+  {
+    "id": "38",
+    "name": "有始有终",
+    "description": "",
+    "icon": "augments/38.png"
+  },
+  {
+    "id": "335",
+    "name": "避难所",
+    "description": "",
+    "icon": "augments/335.png"
+  },
+  {
+    "id": "240",
+    "name": "寄生突变",
+    "description": "",
+    "icon": "augments/240.png"
+  },
+  {
+    "id": "11",
+    "name": "你摸不到",
+    "description": "",
+    "icon": "augments/11.png"
+  },
+  {
+    "id": "47",
+    "name": "关键暴击",
+    "description": "",
+    "icon": "augments/47.png"
+  },
+  {
+    "id": "200",
+    "name": "血亲兄弟",
+    "description": "",
+    "icon": "augments/200.png"
+  },
+  {
+    "id": "112",
+    "name": "终极不可阻挡",
+    "description": "",
+    "icon": "augments/112.png"
+  },
+  {
+    "id": "68",
+    "name": "循环往复",
+    "description": "",
+    "icon": "augments/68.png"
+  },
+  {
+    "id": "228",
+    "name": "属性叠属性叠属性！",
+    "description": "",
+    "icon": "augments/228.png"
+  },
+  {
+    "id": "22",
+    "name": "灵巧",
+    "description": "",
+    "icon": "augments/22.png"
+  },
+  {
+    "id": "41",
+    "name": "歌利亚巨人",
+    "description": "",
+    "icon": "augments/41.png"
+  },
+  {
+    "id": "367",
+    "name": "戒绝风险",
+    "description": "",
+    "icon": "augments/367.png"
+  },
+  {
+    "id": "305",
+    "name": "练腿日",
+    "description": "",
+    "icon": "augments/305.png"
+  },
+  {
+    "id": "221",
+    "name": "引路者",
+    "description": "",
+    "icon": "augments/221.png"
+  },
+  {
+    "id": "1",
+    "name": "加速巫术",
+    "description": "",
+    "icon": "augments/1.png"
+  },
+  {
+    "id": "343",
+    "name": "正义之怒",
+    "description": "",
+    "icon": "augments/343.png"
+  },
+  {
+    "id": "208",
+    "name": "轨道镭射",
+    "description": "",
+    "icon": "augments/208.png"
+  },
+  {
+    "id": "344",
+    "name": "能量充沛",
+    "description": "",
+    "icon": "augments/344.png"
+  },
+  {
+    "id": "365",
+    "name": "戒绝财富",
+    "description": "",
+    "icon": "augments/365.png"
+  },
+  {
+    "id": "58",
+    "name": "秘术冲拳",
+    "description": "",
+    "icon": "augments/58.png"
+  },
+  {
+    "id": "105",
+    "name": "家园卫士",
+    "description": "",
+    "icon": "augments/105.png"
+  },
+  {
+    "id": "3",
+    "name": "虚无强化符文",
+    "description": "",
+    "icon": "augments/3.png"
+  },
+  {
+    "id": "241",
+    "name": "帽子戏法",
+    "description": "",
+    "icon": "augments/241.png"
+  },
+  {
+    "id": "181",
+    "name": "重量级打击手",
+    "description": "",
+    "icon": "augments/181.png"
+  },
+  {
+    "id": "67",
+    "name": "古式佳酿",
+    "description": "",
+    "icon": "augments/67.png"
+  },
+  {
+    "id": "195",
+    "name": "巨人杀手",
+    "description": "",
+    "icon": "augments/195.png"
+  },
+  {
+    "id": "238",
+    "name": "质变：棱彩阶",
+    "description": "",
+    "icon": "augments/238.png"
+  },
+  {
+    "id": "370",
+    "name": "渴望风险",
+    "description": "",
+    "icon": "augments/370.png"
+  },
+  {
+    "id": "371",
+    "name": "强求财富",
+    "description": "",
+    "icon": "augments/371.png"
+  },
+  {
+    "id": "118",
+    "name": "会心治疗",
+    "description": "",
+    "icon": "augments/118.png"
+  },
+  {
+    "id": "237",
+    "name": "质变：黄金阶",
+    "description": "",
+    "icon": "augments/237.png"
+  },
+  {
+    "id": "2",
+    "name": "尖端发明家",
+    "description": "",
+    "icon": "augments/2.png"
+  },
+  {
+    "id": "172",
+    "name": "镜花水月",
+    "description": "",
+    "icon": "augments/172.png"
+  },
+  {
+    "id": "345",
+    "name": "魔法少女",
+    "description": "",
+    "icon": "augments/345.png"
+  },
+  {
+    "id": "218",
+    "name": "亵渎者",
+    "description": "",
+    "icon": "augments/218.png"
+  },
+  {
+    "id": "141",
+    "name": "全心为你",
+    "description": "",
+    "icon": "augments/141.png"
+  },
+  {
+    "id": "50",
+    "name": "基石法师",
+    "description": "",
+    "icon": "augments/50.png"
+  },
+  {
+    "id": "174",
+    "name": "镭射眼",
+    "description": "",
+    "icon": "augments/174.png"
+  },
+  {
+    "id": "227",
+    "name": "属性叠属性！",
+    "description": "",
+    "icon": "augments/227.png"
+  },
+  {
+    "id": "19",
+    "name": "全凭身法",
+    "description": "",
+    "icon": "augments/19.png"
+  },
+  {
+    "id": "229",
+    "name": "火爆甩卖",
+    "description": "",
+    "icon": "augments/229.png"
+  },
+  {
+    "id": "52",
+    "name": "闪电打击",
+    "description": "",
+    "icon": "augments/52.png"
+  },
+  {
+    "id": "314",
+    "name": "解脱者",
+    "description": "",
+    "icon": "augments/314.png"
+  },
+  {
+    "id": "69",
+    "name": "退敌力场",
+    "description": "",
+    "icon": "augments/69.png"
+  },
+  {
+    "id": "113",
+    "name": "老练狙神",
+    "description": "",
+    "icon": "augments/113.png"
+  },
+  {
+    "id": "175",
+    "name": "寄生关系",
+    "description": "",
+    "icon": "augments/175.png"
+  },
+  {
+    "id": "165",
+    "name": "重启",
+    "description": "",
+    "icon": "augments/165.png"
+  },
+  {
+    "id": "134",
+    "name": "亮出你的剑",
+    "description": "",
+    "icon": "augments/134.png"
+  },
+  {
+    "id": "70",
+    "name": "无休回复",
+    "description": "",
+    "icon": "augments/70.png"
+  },
+  {
+    "id": "25",
+    "name": "俯冲轰炸",
+    "description": "",
+    "icon": "augments/25.png"
+  },
+  {
+    "id": "303",
+    "name": "献祭：换取黄金阶",
+    "description": "",
+    "icon": "augments/303.png"
+  },
+  {
+    "id": "7",
+    "name": "大力",
+    "description": "",
+    "icon": "augments/7.png"
+  },
+  {
+    "id": "346",
+    "name": "面包三明治",
+    "description": "",
+    "icon": "augments/346.png"
+  },
+  {
+    "id": "109",
+    "name": "誓约者",
+    "description": "",
+    "icon": "augments/109.png"
+  },
+  {
+    "id": "336",
+    "name": "瞄准脑袋",
+    "description": "",
+    "icon": "augments/336.png"
+  },
+  {
+    "id": "355",
+    "name": "获得属性锻造器",
+    "description": "",
+    "icon": "augments/355.png"
+  },
+  {
+    "id": "358",
+    "name": "狼灵狂热",
+    "description": "",
+    "icon": "augments/358.png"
+  },
+  {
+    "id": "366",
+    "name": "戒绝权力",
+    "description": "",
+    "icon": "augments/366.png"
+  },
+  {
+    "id": "123",
+    "name": "召唤师峡谷的轮盘",
+    "description": "",
+    "icon": "augments/123.png"
+  },
+  {
+    "id": "302",
+    "name": "献祭：换取白银阶",
+    "description": "",
+    "icon": "augments/302.png"
+  },
+  {
+    "id": "74",
+    "name": "缩小射线",
+    "description": "",
+    "icon": "augments/74.png"
+  },
+  {
+    "id": "12",
+    "name": "王车易位",
+    "description": "",
+    "icon": "augments/12.png"
+  },
+  {
+    "id": "152",
+    "name": "任务：钢化你心",
+    "description": "",
+    "icon": "augments/152.png"
+  },
+  {
+    "id": "32",
+    "name": "裁决使",
+    "description": "",
+    "icon": "augments/32.png"
+  },
+  {
+    "id": "18",
+    "name": "巨像的勇气",
+    "description": "",
+    "icon": "augments/18.png"
+  },
+  {
+    "id": "222",
+    "name": "你的劳动果实",
+    "description": "",
+    "icon": "augments/222.png"
+  },
+  {
+    "id": "46",
+    "name": "炼狱龙魂",
+    "description": "",
+    "icon": "augments/46.png"
+  },
+  {
+    "id": "16",
+    "name": "连招大师",
+    "description": "",
+    "icon": "augments/16.png"
+  },
+  {
+    "id": "215",
+    "name": "黑暗赐福",
+    "description": "",
+    "icon": "augments/215.png"
+  },
+  {
+    "id": "56",
+    "name": "由心及物",
+    "description": "",
+    "icon": "augments/56.png"
+  },
+  {
+    "id": "211",
+    "name": "杀戮时间到了",
+    "description": "",
+    "icon": "augments/211.png"
+  },
+  {
+    "id": "96",
+    "name": "时光之智慧",
+    "description": "",
+    "icon": "augments/96.png"
+  },
+  {
+    "id": "304",
+    "name": "献祭：换取棱彩阶",
+    "description": "",
+    "icon": "augments/304.png"
+  },
+  {
+    "id": "43",
+    "name": "位移魔术",
+    "description": "",
+    "icon": "augments/43.png"
+  },
+  {
+    "id": "64",
+    "name": "坚韧",
+    "description": "",
+    "icon": "augments/64.png"
+  },
+  {
+    "id": "48",
+    "name": "珠光护手",
+    "description": "",
+    "icon": "augments/48.png"
+  },
+  {
+    "id": "309",
+    "name": "还有我的斧头！",
+    "description": "",
+    "icon": "augments/309.png"
+  }
+]
