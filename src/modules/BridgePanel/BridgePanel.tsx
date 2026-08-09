@@ -17,12 +17,13 @@ interface ChampSelectAction {
 }
 
 interface ChampSelectSession {
-  actions: ChampSelectAction[][];
+  actions?: ChampSelectAction[][];
   localPlayerCellId: number;
-  myTeam: ChampSelectPlayer[];
-  theirTeam: ChampSelectPlayer[];
-  benchChampionIds: number[];
-  timer: { phase: string; adjustedTimeLeftInPhase: number };
+  myTeam?: ChampSelectPlayer[];
+  theirTeam?: ChampSelectPlayer[];
+  /** 仅大乱斗选人存在；自定义/排位选人无此字段 */
+  benchChampionIds?: number[];
+  timer?: { phase: string; adjustedTimeLeftInPhase: number };
 }
 
 interface ChampSelectPlayer {
@@ -281,7 +282,7 @@ export default function BridgePanel() {
             {/* My champion */}
             <div>
               <p className="text-xs mb-1" style={{ color: 'var(--color-text-secondary)' }}>你的英雄</p>
-              {data.champSelect.myTeam
+              {(data.champSelect.myTeam ?? [])
                 .filter((p) => p.cellId === data.champSelect!.localPlayerCellId)
                 .map((player) => (
                   <div key={player.cellId} className="flex items-center gap-2 p-2 rounded" style={{ backgroundColor: 'var(--color-bg-primary)' }}>
@@ -292,12 +293,12 @@ export default function BridgePanel() {
                 ))}
             </div>
 
-            {/* Bench */}
-            {data.champSelect.benchChampionIds.length > 0 && (
+            {/* Bench（仅大乱斗选人有备选席） */}
+            {(data.champSelect.benchChampionIds?.length ?? 0) > 0 && (
               <div>
                 <p className="text-xs mb-1" style={{ color: 'var(--color-text-secondary)' }}>备选席</p>
                 <div className="flex gap-2 flex-wrap">
-                  {data.champSelect.benchChampionIds.map((id, i) => (
+                  {(data.champSelect.benchChampionIds ?? []).map((id, i) => (
                     <span
                       key={i}
                       className="px-2 py-1 rounded text-xs"
@@ -314,7 +315,7 @@ export default function BridgePanel() {
             <div>
               <p className="text-xs mb-1" style={{ color: 'var(--color-text-secondary)' }}>队友</p>
               <div className="space-y-1">
-                {data.champSelect.myTeam
+                {(data.champSelect.myTeam ?? [])
                   .filter((p) => p.cellId !== data.champSelect!.localPlayerCellId)
                   .map((player) => (
                     <div key={player.cellId} className="flex items-center gap-2 p-1.5 rounded text-xs" style={{ backgroundColor: 'var(--color-bg-primary)' }}>

@@ -131,16 +131,26 @@ function parseLockfile(content: string): { port: number; password: string } | nu
 /**
  * 尝试从指定路径读取 lockfile
  */
+/** 已警告过的「路径 → 内容」，避免同一异常 lockfile 每轮刷屏 */
+const warnedLockfiles = new Map<string, string>();
+
 function tryReadLockfile(filePath: string): { port: number; password: string } | null {
   try {
     if (!fs.existsSync(filePath)) return null;
     const content = fs.readFileSync(filePath, 'utf-8');
+    // 空文件属正常情况（客户端退出后的残留、或刚创建尚未写入），静默跳过
+    if (!content.trim()) return null;
     const parsed = parseLockfile(content);
     if (parsed) {
+      warnedLockfiles.delete(filePath);
       log(`✓ lockfile 有效: ${filePath} → 端口 ${parsed.port}`);
       return parsed;
     }
-    log(`⚠ lockfile 格式异常: ${filePath} → "${content.slice(0, 80)}"`);
+    // 同样的异常内容只警告一次
+    if (warnedLockfiles.get(filePath) !== content) {
+      warnedLockfiles.set(filePath, content);
+      log(`⚠ lockfile 格式异常: ${filePath} → "${content.slice(0, 80)}"`);
+    }
     return null;
   } catch {
     return null;
@@ -214,6 +224,108 @@ function tryProcessCommandLine(): { port: number; password: string } | null {
     return { port: result.port, password: result.password };
   }
   return null;
+}
+
+/**
+ * 兜底二：解析最新的 LeagueClientUx 日志，提取 --app-port / --remoting-auth-token
+ *
+ * 国服客户端以管理员权限运行时，WMI/CIM 读不到进程命令行，
+ * 且部分版本不写 lockfile，但 Ux 日志（可读）第一行包含完整启动参数。
+ */
+function detectByUxLog(): { port: number; password: string } | null {
+  const logDirs = new Set(LOCKFILE_CANDIDATES.map((p) => path.dirname(p)));
+
+  for (const dir of logDirs) {
+    let files: string[];
+    try {
+      files = fs.readdirSync(dir).filter((f) => f.endsWith('_LeagueClientUx.log'));
+    } catch {
+      continue;
+    }
+    if (files.length === 0) continue;
+
+    // 按修改时间取最新的一份（当前运行会话的日志会持续追加，mtime 最新）
+    files.sort((a, b) => {
+      try {
+        return fs.statSync(path.join(dir, b)).mtimeMs - fs.statSync(path.join(dir, a)).mtimeMs;
+      } catch {
+        return 0;
+      }
+    });
+
+    // 启动参数在日志开头，只读前 64KB
+    let head: string;
+    try {
+      const fd = fs.openSync(path.join(dir, files[0]), 'r');
+      const buf = Buffer.alloc(64 * 1024);
+      const bytesRead = fs.readSync(fd, buf, 0, buf.length, 0);
+      fs.closeSync(fd);
+      head = buf.toString('utf-8', 0, bytesRead);
+    } catch {
+      continue;
+    }
+
+    const portMatch = head.match(/--app-port=(\d+)/);
+    const tokenMatch = head.match(/--remoting-auth-token=(\S+)/);
+    if (portMatch && tokenMatch) {
+      return { port: parseInt(portMatch[1], 10), password: tokenMatch[1] };
+    }
+  }
+  return null;
+}
+
+/**
+ * 探测指定凭据对应的 LCU 是否真实存活（日志可能是历史会话残留的）
+ */
+function probeLcu(port: number, password: string): Promise<boolean> {
+  return new Promise((resolve) => {
+    const auth = Buffer.from(`riot:${password}`).toString('base64');
+    const req = https.request(
+      {
+        hostname: '127.0.0.1',
+        port,
+        path: '/lol-gameflow/v1/session',
+        method: 'GET',
+        headers: {
+          Authorization: `Basic ${auth}`,
+          Accept: 'application/json',
+        },
+        rejectUnauthorized: false,
+        timeout: 3000,
+      },
+      (res) => {
+        res.resume();
+        // 401 = 凭据错误（历史日志）；其余状态均说明 LCU 存活且凭据有效
+        resolve(res.statusCode !== 401);
+      },
+    );
+    req.on('error', () => resolve(false));
+    req.on('timeout', () => {
+      req.destroy();
+      resolve(false);
+    });
+    req.end();
+  });
+}
+
+/** 日志兜底探测互斥锁，避免上一轮探测未结束时重复发起 */
+let uxLogProbing = false;
+
+/**
+ * lockfile / 进程命令行都失败时，尝试从 Ux 日志提取凭据并验证
+ */
+async function tryUxLogFallback() {
+  if (state.connected || uxLogProbing) return;
+  uxLogProbing = true;
+  try {
+    const creds = detectByUxLog();
+    if (creds && (await probeLcu(creds.port, creds.password))) {
+      log(`✓ 从客户端日志获取凭据: 端口 ${creds.port}`);
+      updateLcuState(creds);
+    }
+  } finally {
+    uxLogProbing = false;
+  }
 }
 
 /**
@@ -509,7 +621,14 @@ function startLcuDetection() {
   // 3. 轮询兜底（每 3 秒）
   setInterval(() => {
     const creds = detectLcuCredentials();
-    updateLcuState(creds);
+    if (creds) {
+      updateLcuState(creds);
+    } else if (!state.connected) {
+      // lockfile / 进程命令行都失败时的最后兜底（国服提权运行场景）
+      tryUxLogFallback();
+    }
+    // creds 为 null 但当前已连接时不主动断开（可能凭据来自日志兜底），
+    // 是否真断开交给下面的健康检查判断
 
     if (state.connected) {
       checkLcuAlive().then((alive) => {
