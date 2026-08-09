@@ -1,4 +1,7 @@
 import { useRef, useState, useCallback, useEffect } from 'react';
+import { useBorderlessDetection } from './useBorderlessDetection';
+import AugmentOverlay from './AugmentOverlay';
+import { useAugmentDetection } from './useAugmentDetection';
 
 interface CaptureState {
   status: 'idle' | 'capturing' | 'error';
@@ -22,6 +25,17 @@ export default function ScreenCapture() {
     }
     setState({ status: 'idle' });
   }, []);
+
+  const borderless = useBorderlessDetection(
+    streamRef,
+    videoRef,
+    state.status === 'capturing',
+  );
+
+  const augment = useAugmentDetection(
+    videoRef,
+    state.status === 'capturing',
+  );
 
   const startCapture = useCallback(async () => {
     try {
@@ -179,7 +193,63 @@ export default function ScreenCapture() {
           className="w-full h-full object-contain"
           style={{ display: state.status === 'capturing' ? 'block' : 'none' }}
         />
+        <AugmentOverlay
+          videoRef={videoRef}
+          matches={augment.matches}
+          isActive={state.status === 'capturing'}
+        />
       </div>
+
+      {/* 无边框窗口检测状态栏 */}
+      {state.status === 'capturing' && (
+        <div
+          className="flex items-center justify-between px-4 py-2 border-t text-xs"
+          style={{
+            borderColor: 'var(--color-border)',
+            backgroundColor: borderless.stillnessWarning
+              ? 'rgba(234, 179, 8, 0.08)'
+              : 'transparent',
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <span
+              className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
+              style={{
+                backgroundColor: borderless.stillnessWarning
+                  ? 'var(--color-warning, #eab308)'
+                  : borderless.isLikelyBorderless === true
+                    ? 'var(--color-success)'
+                    : 'var(--color-text-secondary)',
+              }}
+            />
+            {borderless.stillnessWarning ? (
+              <span style={{ color: 'var(--color-warning, #eab308)' }}>
+                ⚠ {borderless.stillnessWarning}
+              </span>
+            ) : borderless.isLikelyBorderless === true ? (
+              <span style={{ color: 'var(--color-success)' }}>
+                画面正常更新 ✓
+              </span>
+            ) : (
+              <span style={{ color: 'var(--color-text-secondary)' }}>
+                正在检测画面状态...
+              </span>
+            )}
+          </div>
+          {borderless.stillnessWarning && (
+            <button
+              onClick={borderless.dismissWarning}
+              className="px-2 py-0.5 text-xs rounded transition-colors"
+              style={{
+                backgroundColor: 'var(--color-bg-hover)',
+                color: 'var(--color-text-primary)',
+              }}
+            >
+              我知道了
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }

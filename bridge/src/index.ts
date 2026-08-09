@@ -128,9 +128,6 @@ function parseLockfile(content: string): { port: number; password: string } | nu
   return { port, password };
 }
 
-/**
- * 尝试从指定路径读取 lockfile
- */
 /** 已警告过的「路径 → 内容」，避免同一异常 lockfile 每轮刷屏 */
 const warnedLockfiles = new Map<string, string>();
 
@@ -208,29 +205,54 @@ function detectByProcessPath(): { port: number; password: string; lockfilePath: 
 }
 
 /**
- * 进程命令行兜底 — 通过 PowerShell/WMIC 查询 LeagueClientUx.exe 参数
+ * 探测 LCU 凭据（lockfile 优先 → 进程命令行兜底）
  */
-function tryProcessCommandLine(): { port: number; password: string } | null {
-  const result = detectByProcessPath();
-  if (result) {
-    log(`✓ 从进程命令行获取凭据: 端口 ${result.port}`);
+function detectLcuCredentials(): { port: number; password: string; lockfilePath?: string } | null {
+  const checkedPaths: { path: string; exists: boolean; valid: boolean }[] = [];
 
-    // 如果反推出了 lockfile 路径，追加到候选列表
-    if (result.lockfilePath && !LOCKFILE_CANDIDATES.includes(result.lockfilePath)) {
-      LOCKFILE_CANDIDATES.push(result.lockfilePath);
-      log(`  追加候选路径: ${result.lockfilePath}`);
+  for (const candidate of LOCKFILE_CANDIDATES) {
+    const exists = fs.existsSync(candidate);
+    let valid = false;
+    if (exists) {
+      const result = tryReadLockfile(candidate);
+      if (result) {
+        lastDetectionDiag = {
+          time: new Date().toISOString(),
+          checkedPaths,
+          processDetected: false,
+          processPort: null,
+        };
+        return { ...result, lockfilePath: candidate };
+      }
+      valid = false;
     }
-
-    return { port: result.port, password: result.password };
+    checkedPaths.push({ path: candidate, exists, valid });
   }
+
+  // 兜底：进程命令行
+  const procResult = detectByProcessPath();
+  lastDetectionDiag = {
+    time: new Date().toISOString(),
+    checkedPaths,
+    processDetected: procResult !== null,
+    processPort: procResult?.port || null,
+  };
+
+  if (procResult) {
+    log(`✓ 从进程命令行获取凭据: 端口 ${procResult.port}`);
+    if (procResult.lockfilePath && !LOCKFILE_CANDIDATES.includes(procResult.lockfilePath)) {
+      LOCKFILE_CANDIDATES.push(procResult.lockfilePath);
+    }
+    return { port: procResult.port, password: procResult.password };
+  }
+
   return null;
 }
 
 /**
- * 兜底二：解析最新的 LeagueClientUx 日志，提取 --app-port / --remoting-auth-token
- *
+ * 兜底：解析最新的 LeagueClientUx 日志提取启动参数。
  * 国服客户端以管理员权限运行时，WMI/CIM 读不到进程命令行，
- * 且部分版本不写 lockfile，但 Ux 日志（可读）第一行包含完整启动参数。
+ * 且部分版本不写 lockfile，但 Ux 日志第一行包含完整启动参数。
  */
 function detectByUxLog(): { port: number; password: string } | null {
   const logDirs = new Set(LOCKFILE_CANDIDATES.map((p) => path.dirname(p)));
@@ -326,47 +348,6 @@ async function tryUxLogFallback() {
   } finally {
     uxLogProbing = false;
   }
-}
-
-/**
- * 探测 LCU 凭据（lockfile 优先 → 进程命令行兜底）
- */
-function detectLcuCredentials(): { port: number; password: string; lockfilePath?: string } | null {
-  const checkedPaths: { path: string; exists: boolean; valid: boolean }[] = [];
-
-  for (const candidate of LOCKFILE_CANDIDATES) {
-    const exists = fs.existsSync(candidate);
-    let valid = false;
-    if (exists) {
-      const result = tryReadLockfile(candidate);
-      if (result) {
-        lastDetectionDiag = {
-          time: new Date().toISOString(),
-          checkedPaths,
-          processDetected: false,
-          processPort: null,
-        };
-        return { ...result, lockfilePath: candidate };
-      }
-      valid = false; // 文件存在但格式不对
-    }
-    checkedPaths.push({ path: candidate, exists, valid });
-  }
-
-  // 兜底：进程命令行
-  const procResult = tryProcessCommandLine();
-  lastDetectionDiag = {
-    time: new Date().toISOString(),
-    checkedPaths,
-    processDetected: procResult !== null,
-    processPort: procResult?.port || null,
-  };
-
-  if (procResult) {
-    return { port: procResult.port, password: procResult.password };
-  }
-
-  return null;
 }
 
 /* ── 状态管理 ─────────────────────────────────────────────── */
@@ -495,7 +476,7 @@ async function handleRequest(req: http.IncomingMessage, res: http.ServerResponse
       return;
     }
 
-    // GET /debug — 诊断信息，排查连接问题
+    // GET /debug
     if (url.pathname === '/debug') {
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
@@ -503,7 +484,6 @@ async function handleRequest(req: http.IncomingMessage, res: http.ServerResponse
         port: state.port,
         lockfilePath: state.lockfilePath || null,
         lastDetection: lastDetectionDiag,
-        candidatePaths: LOCKFILE_CANDIDATES,
       }, null, 2));
       return;
     }
@@ -561,28 +541,19 @@ function startHttpServer() {
 }
 
 function startLcuDetection() {
-  // 1. 立即探测一次，输出诊断
-  log('🔍 开始探测 LCU 客户端...');
-  log(`   候选 lockfile 路径 (${LOCKFILE_CANDIDATES.length} 个):`);
-  for (const p of LOCKFILE_CANDIDATES) {
-    const exists = fs.existsSync(p);
-    log(`   ${exists ? '✓' : '✗'} ${p}`);
-  }
-
+  // 1. 立即探测一次
+  log(`🔍 探测 LCU 客户端 (${LOCKFILE_CANDIDATES.length} 个候选路径)...`);
   const creds = detectLcuCredentials();
   updateLcuState(creds);
 
   if (!creds) {
-    log('⚠ 未检测到 LCU 客户端。请确保:');
-    log('   1. LOL 客户端已启动并登录');
-    log('   2. 可使用环境变量指定路径:');
-    log('      LOL_INSTALL_PATH=C:\\path\\to\\League of Legends');
-    log('      LOL_LOCKFILE_PATH=C:\\path\\to\\lockfile');
-    log('   3. 访问 http://127.0.0.1:3517/debug 查看诊断信息');
+    log('⚠ 未检测到 LCU 客户端。请确保 LOL 已启动并登录，');
+    log('   或设置环境变量 LOL_LOCKFILE_PATH / LOL_INSTALL_PATH');
   }
 
   // 2. 文件监听（lockfile 变化时快速感知）
   const watchedDirs = new Set<string>();
+  const activeWatches: string[] = [];
   for (const candidate of LOCKFILE_CANDIDATES) {
     const dir = path.dirname(candidate);
     if (!watchedDirs.has(dir)) {
@@ -601,21 +572,22 @@ function startLcuDetection() {
         });
         watcher.on('change', (filePath: string) => {
           if (path.basename(filePath) === 'lockfile') {
-            log(`📁 lockfile 已更新: ${filePath}`);
             const result = tryReadLockfile(filePath);
             if (result) updateLcuState({ ...result, lockfilePath: filePath });
           }
         });
         watcher.on('unlink', (filePath: string) => {
           if (path.basename(filePath) === 'lockfile') {
-            log(`📁 lockfile 已删除: ${filePath}`);
             const remaining = detectLcuCredentials();
             updateLcuState(remaining);
           }
         });
-        log(`👁 监听目录: ${dir}`);
+        activeWatches.push(dir);
       }
     }
+  }
+  if (activeWatches.length > 0) {
+    log(`👁 监听 ${activeWatches.length} 个目录`);
   }
 
   // 3. 轮询兜底（每 3 秒）

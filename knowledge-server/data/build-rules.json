@@ -1,0 +1,9 @@
+{
+  "_note": "出装规则表。按英雄推荐核心装备（itemId 为 Data Dragon 装备 ID）",
+  "updatedAt": "2026-08-09",
+  "rules": [
+    { "championId": "Aatrox", "name": "暗裔剑魔", "coreItems": [3074, 3153, 6333], "boots": [3047], "notes": "占位数据" },
+    { "championId": "Ahri", "name": "九尾妖狐", "coreItems": [3089, 3135, 3157], "boots": [3020], "notes": "占位数据" },
+    { "championId": "Ashe", "name": "寒冰射手", "coreItems": [3095, 3031, 6672], "boots": [3006], "notes": "占位数据" }
+  ]
+}

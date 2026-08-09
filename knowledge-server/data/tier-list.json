@@ -1,0 +1,18 @@
+{
+  "_note": "英雄梯度表。tier: S/A/B/C/D 为强度评级（非胜率），role: mage/marksman/tank/fighter/assassin/support",
+  "updatedAt": "2026-08-09",
+  "tiers": {
+    "S": { "label": "T0 必选", "color": "#ff4e50" },
+    "A": { "label": "T1 强力", "color": "#ff9f43" },
+    "B": { "label": "T2 可用", "color": "#feca57" },
+    "C": { "label": "T3 一般", "color": "#54a0ff" },
+    "D": { "label": "T4 不推荐", "color": "#8888a0" }
+  },
+  "champions": [
+    { "championId": "Aatrox", "name": "暗裔剑魔", "tier": "A", "role": "fighter", "notes": "占位数据 — 待补充真实评分" },
+    { "championId": "Ahri", "name": "九尾妖狐", "tier": "A", "role": "mage", "notes": "占位数据" },
+    { "championId": "Akali", "name": "离群之刺", "tier": "B", "role": "assassin", "notes": "占位数据" },
+    { "championId": "Annie", "name": "黑暗之女", "tier": "B", "role": "mage", "notes": "占位数据" },
+    { "championId": "Ashe", "name": "寒冰射手", "tier": "A", "role": "marksman", "notes": "占位数据" }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "_note": "海克斯强化评分。strength: S/A/B/C 梯度评级（非胜率数值），符合 Riot 开发者协议要求",
+  "updatedAt": "2026-08-09",
+  "augments": [
+    { "augmentId": "placeholder_1", "name": "示例强化 A", "strength": "A", "notes": "占位数据 — 待从 CDragon 同步真实数据后填充" },
+    { "augmentId": "placeholder_2", "name": "示例强化 B", "strength": "B", "notes": "占位数据" }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "_note": "组合搭配表。记录英雄间的协同(synergy)与反协同(counter)关系。synergy: positive/negative/neutral",
+  "updatedAt": "2026-08-09",
+  "combos": [
+    { "championIds": ["Aatrox", "Ahri"], "synergy": "positive", "notes": "占位数据 — 控制链配合" },
+    { "championIds": ["Ashe", "Akali"], "synergy": "neutral", "notes": "占位数据" }
+  ]
+}

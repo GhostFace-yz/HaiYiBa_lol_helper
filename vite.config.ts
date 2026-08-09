@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 const BRIDGE_URL = process.env.BRIDGE_URL || 'http://127.0.0.1:3517'
+const KB_URL = process.env.KB_URL || 'http://127.0.0.1:4000'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
@@ -14,6 +15,14 @@ export default defineConfig({
         target: BRIDGE_URL,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/bridge/, ''),
+      },
+      '/kb': {
+        target: KB_URL,
+        changeOrigin: true,
+      },
+      '/assets': {
+        target: KB_URL,
+        changeOrigin: true,
       },
     },
   },
